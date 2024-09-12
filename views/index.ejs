@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL shortener</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="my-2">URL shortener</h1>
+        <form action="/shortURLs" method="POST" style="display: flex; gap: 4px;" class="my-4 form-inline">
+            <input placeholder="enter URL" required class="form-control mr-2" type="url" name="fullURL" id="fullURL">
+            <button class="btn btn-success" type="submit">shorten</button>
+        </form>
+        
+        <table class="table table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th>original URL</th>
+                    <th>short URL</th>
+                    <th>visits</th>
+                    <th>created</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% shortURLs.forEach(shortURL => { %>
+                    <tr>
+                        <td><a target="_blank" href="<%= shortURL.full %>"><%= shortURL.full %></a></td>
+                        <td><a target="_blank" href="<%= shortURL.short %>"><%= shortURL.short %></a></td>
+                        <td><%= shortURL.clicks %> visits</td>
+                        <!-- if visit visits -->
+                        <td><%= shortURL.date %></td>
+                    </tr>
+                <% }) %>
+                
+            </tbody>
+        </table>
+    </div>
+
+ 
+</body>
+</html>
